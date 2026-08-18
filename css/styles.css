@@ -1,0 +1,116 @@
+/* ============================================
+   PORTAFOLIO PERSONAL - JOHANNA BARRAGÁN
+   Hoja de estilos principal
+   Paleta basada en los colores de marca de LinkedIn
+   ============================================ */
+
+/* --------------------------------------------
+   1. VARIABLES CSS
+   -------------------------------------------- */
+:root {
+    /* Colores de marca */
+    --color-primario: #0A66C2;
+    --color-primario-oscuro: #004182;
+    --color-primario-claro: #378FE9;
+    --color-fondo: #F3F2EF;
+    --color-superficie: #FFFFFF;
+    --color-texto: #1D2226;
+    --color-texto-suave: #5E6B74;
+    --color-borde: #D9D9D9;
+
+    /* Tipografía */
+    --fuente-base: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --tamano-base: 16px;
+    --tamano-titulo: 2.25rem;
+    --tamano-subtitulo: 1.5rem;
+    --tamano-pequeno: 0.875rem;
+
+    /* Espaciado */
+    --espacio-xs: 0.5rem;
+    --espacio-sm: 1rem;
+    --espacio-md: 2rem;
+    --espacio-lg: 3rem;
+
+    /* Otros */
+    --ancho-maximo: 1100px;
+    --radio: 8px;
+    --sombra: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --transicion: 0.25s ease;
+}
+
+/* --------------------------------------------
+   2. REINICIO Y ESTILOS BASE
+   -------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: var(--tamano-base);
+}
+
+body {
+    font-family: var(--fuente-base);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: var(--color-primario);
+    text-decoration: none;
+    transition: color var(--transicion);
+}
+
+a:hover {
+    color: var(--color-primario-oscuro);
+    text-decoration: underline;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --------------------------------------------
+   3. CONTENEDORES GENERALES
+   -------------------------------------------- */
+.seccion {
+    max-width: var(--ancho-maximo);
+    margin: 0 auto;
+    padding: var(--espacio-lg) var(--espacio-sm);
+}
+
+/* --------------------------------------------
+   4. ENCABEZADO
+   -------------------------------------------- */
+.encabezado {
+    background-color: var(--color-superficie);
+    border-bottom: 1px solid var(--color-borde);
+    box-shadow: var(--sombra);
+    padding: var(--espacio-sm);
+}
+
+.encabezado__marca {
+    font-size: var(--tamano-subtitulo);
+    font-weight: 700;
+    color: var(--color-primario);
+}
+
+/* --------------------------------------------
+   5. PIE DE PÁGINA
+   -------------------------------------------- */
+.pie {
+    background-color: var(--color-primario-oscuro);
+    color: var(--color-superficie);
+    text-align: center;
+    padding: var(--espacio-md) var(--espacio-sm);
+    font-size: var(--tamano-pequeno);
+}
