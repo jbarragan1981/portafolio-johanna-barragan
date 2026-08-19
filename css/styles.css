@@ -96,16 +96,168 @@ ul {
     border-bottom: 1px solid var(--color-borde);
     box-shadow: var(--sombra);
     padding: var(--espacio-sm);
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
-.encabezado__marca {
+.encabezado__contenedor {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--espacio-sm);
+    max-width: var(--ancho-maximo);
+    margin: 0 auto;
+}
+
+.encabezado__nombre {
     font-size: var(--tamano-subtitulo);
     font-weight: 700;
-    color: var(--color-primario);
+    color: var(--color-primario-oscuro);
+    line-height: 1.2;
+}
+
+.encabezado__rol {
+    font-size: var(--tamano-pequeno);
+    color: var(--color-texto-suave);
 }
 
 /* --------------------------------------------
-   5. PIE DE PÁGINA
+   5. MENÚ DE NAVEGACIÓN
+   -------------------------------------------- */
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--espacio-xs);
+}
+
+.menu__enlace {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.85rem;
+    border-radius: var(--radio);
+    color: var(--color-primario-oscuro);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background-color var(--transicion), color var(--transicion);
+}
+
+.menu__enlace:hover {
+    background-color: var(--color-fondo);
+    color: var(--color-primario);
+    text-decoration: none;
+}
+
+/* Iconos duotono: el trazo base hereda el color del enlace
+   y el tono secundario se invierte al pasar el cursor. */
+.icono {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.icono__base {
+    fill: currentColor;
+}
+
+.icono__tono {
+    fill: var(--color-primario-claro);
+    transition: fill var(--transicion);
+}
+
+.menu__enlace:hover .icono__tono {
+    fill: var(--color-primario-oscuro);
+}
+
+/* --------------------------------------------
+   6. SECCIÓN PRINCIPAL
+   -------------------------------------------- */
+.inicio {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--espacio-lg);
+}
+
+.inicio__texto {
+    flex: 1 1 340px;
+}
+
+.inicio__antetitulo {
+    font-size: var(--tamano-pequeno);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-texto-suave);
+}
+
+.inicio__titulo {
+    font-size: var(--tamano-titulo);
+    line-height: 1.2;
+    color: var(--color-primario-oscuro);
+    margin: var(--espacio-xs) 0 var(--espacio-sm);
+}
+
+.inicio__descripcion {
+    color: var(--color-texto-suave);
+    max-width: 54ch;
+}
+
+.inicio__acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--espacio-sm);
+    margin-top: var(--espacio-md);
+}
+
+.inicio__figura {
+    flex: 0 1 280px;
+}
+
+.inicio__foto {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 6px solid var(--color-superficie);
+    box-shadow: 0 4px 16px rgba(0, 65, 130, 0.18);
+}
+
+/* --------------------------------------------
+   7. BOTONES
+   -------------------------------------------- */
+.boton {
+    display: inline-block;
+    padding: 0.65rem 1.6rem;
+    border-radius: 2rem;
+    background-color: var(--color-primario);
+    color: var(--color-superficie);
+    font-weight: 600;
+    transition: background-color var(--transicion), color var(--transicion);
+}
+
+.boton:hover {
+    background-color: var(--color-primario-oscuro);
+    color: var(--color-superficie);
+    text-decoration: none;
+}
+
+.boton--secundario {
+    background-color: transparent;
+    color: var(--color-primario);
+    border: 1px solid var(--color-primario);
+}
+
+.boton--secundario:hover {
+    background-color: var(--color-primario);
+    color: var(--color-superficie);
+}
+
+/* --------------------------------------------
+   8. PIE DE PÁGINA
    -------------------------------------------- */
 .pie {
     background-color: var(--color-primario-oscuro);
@@ -113,4 +265,44 @@ ul {
     text-align: center;
     padding: var(--espacio-md) var(--espacio-sm);
     font-size: var(--tamano-pequeno);
+}
+
+/* --------------------------------------------
+   9. ADAPTACIÓN A PANTALLAS PEQUEÑAS
+   -------------------------------------------- */
+@media (max-width: 768px) {
+    :root {
+        --tamano-titulo: 1.75rem;
+    }
+
+    .encabezado__contenedor {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .menu {
+        width: 100%;
+    }
+
+    .menu__enlace {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .inicio {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .inicio__descripcion {
+        margin: 0 auto;
+    }
+
+    .inicio__acciones {
+        justify-content: center;
+    }
+
+    .inicio__figura {
+        max-width: 220px;
+    }
 }

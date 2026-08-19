@@ -5,23 +5,104 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portafolio personal de Johanna Barragán, Consultora en Inteligencia Artificial.">
     <title>Johanna Barragán | Portafolio</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
     <!-- ENCABEZADO: nombre, profesión y menú de navegación -->
     <header class="encabezado">
-        <p class="encabezado__marca">Johanna Barragán</p>
-        <nav class="navegacion">
-            <!-- Menú de navegación -->
-        </nav>
+        <div class="encabezado__contenedor">
+
+            <div class="encabezado__identidad">
+                <p class="encabezado__nombre">Johanna Barragán</p>
+                <p class="encabezado__rol">Consultora en IA &amp; Automatización</p>
+            </div>
+
+            <nav class="navegacion" aria-label="Menú principal">
+                <ul class="menu">
+
+                    <li class="menu__item">
+                        <a class="menu__enlace" href="#inicio">
+                            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path class="icono__base" d="M12 3 L21.5 11 V21 H2.5 V11 Z"/>
+                                <rect class="icono__tono" x="9.75" y="13.5" width="4.5" height="7.5" rx="0.8"/>
+                            </svg>
+                            <span>Inicio</span>
+                        </a>
+                    </li>
+
+                    <li class="menu__item">
+                        <a class="menu__enlace" href="#sobre-mi">
+                            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <path class="icono__base" d="M3.5 21 a8.5 8.5 0 0 1 17 0 Z"/>
+                                <circle class="icono__tono" cx="12" cy="8" r="4.5"/>
+                            </svg>
+                            <span>Sobre mí</span>
+                        </a>
+                    </li>
+
+                    <li class="menu__item">
+                        <a class="menu__enlace" href="#habilidades">
+                            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <rect class="icono__base" x="3" y="13" width="4.5" height="8" rx="1.2"/>
+                                <rect class="icono__tono" x="9.75" y="9" width="4.5" height="12" rx="1.2"/>
+                                <rect class="icono__base" x="16.5" y="5" width="4.5" height="16" rx="1.2"/>
+                            </svg>
+                            <span>Habilidades</span>
+                        </a>
+                    </li>
+
+                    <li class="menu__item">
+                        <a class="menu__enlace" href="#proyectos">
+                            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <rect class="icono__base" x="3" y="5" width="8" height="6" rx="1.5"/>
+                                <rect class="icono__tono" x="13" y="5" width="8" height="6" rx="1.5"/>
+                                <rect class="icono__base" x="3" y="13" width="18" height="6" rx="1.5"/>
+                            </svg>
+                            <span>Proyectos</span>
+                        </a>
+                    </li>
+
+                    <li class="menu__item">
+                        <a class="menu__enlace" href="#contacto">
+                            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                <rect class="icono__base" x="2.5" y="5" width="19" height="14" rx="2"/>
+                                <path class="icono__tono" d="M3.4 6 L12 13 L20.6 6 Z"/>
+                            </svg>
+                            <span>Contacto</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </div>
     </header>
 
     <main>
 
         <!-- SECCIÓN PRINCIPAL: título, descripción breve e imagen -->
-        <section id="inicio" class="seccion">
-            <!-- Presentación principal -->
+        <section id="inicio" class="seccion inicio">
+
+            <div class="inicio__texto">
+                <p class="inicio__antetitulo">Johanna Barragán Arteaga</p>
+                <h1 class="inicio__titulo">Arquitecturas de datos e IA en producción</h1>
+                <p class="inicio__descripcion">
+                    Consultora tecnológica con más de 20 años de experiencia en transformación
+                    digital. En Viamatica implemento soluciones de inteligencia artificial y
+                    automatización que optimizan los procesos de empresas de banca, seguros y
+                    retail desde Guayaquil, Ecuador.
+                </p>
+                <div class="inicio__acciones">
+                    <a class="boton" href="#proyectos">Ver proyectos</a>
+                    <a class="boton boton--secundario" href="#contacto">Escribirme</a>
+                </div>
+            </div>
+
+            <figure class="inicio__figura">
+                <img class="inicio__foto" src="img/foto-linkedin.jpg" alt="Retrato de Johanna Barragán Arteaga">
+            </figure>
+
         </section>
 
         <!-- SOBRE MÍ: quién soy, intereses y objetivos -->
