@@ -290,19 +290,167 @@
 
         <!-- PROYECTOS: mínimo dos proyectos con nombre, descripción, imagen y enlace -->
         <section id="proyectos" class="seccion">
-            <!-- Proyectos con etiquetas article-->
+
+            <h2 class="seccion_titulo">Proyectos</h2>
+            <p class="seccion_bajada">
+                Una selección de trabajos de consultoría, desarrollo y formación de los últimos años.
+            </p>
+
+            <div class="proyectos">
+
+                 <article class="proyecto">
+                    <figure class="proyecto_figura">
+                        <img class="proyecto_imagen" src="img/proyecto-agente-ia.jpg" alt="Conversación del agente de inteligencia artificial implementado para Smartfondos en WhatsApp">
+                    </figure>
+                    <div class="proyecto_cuerpo">
+                        <h3 class="proyecto_titulo">Agente de IA para Smartfondos</h3>
+                        <p class="proyecto_detalle">
+                            Agente conversacional sobre la plataforma IANEXO que automatiza el
+                            primer contacto con potenciales inversionistas de esta administradora
+                            de fondos. Resuelve consultas frecuentes, explica productos y deriva a
+                            los asesores cuando hay intención de inversión, con atención 24/7 y
+                            continuidad entre llamada telefónica y WhatsApp.
+                        </p>
+                        <ul class="proyecto_etiquetas">
+                            <li class="etiqueta">IANEXO</li>
+                            <li class="etiqueta">WhatsApp</li>
+                            <li class="etiqueta">Omnicanal</li>
+                            <li class="etiqueta">Seguridad de prompts</li>
+                        </ul>
+                        <a class="proyecto_enlace" href="https://itahora.com/2026/05/19/smartfondos-automatiza-la-experiencia-de-atencion-con-ianexo/" target="_blank" rel="noopener">Leer el caso en IT ahora</a>
+                    </div>
+                </article>
+ 
+                
+                <article class="proyecto">
+                    <figure class="proyecto_figura">
+                        <img class="proyecto_imagen" src="img/proyecto-formacion.jpg" alt="Taller de inteligencia artificial y automatización con un grupo de participantes">
+                    </figure>
+                    <div class="proyecto_cuerpo">
+                        <h3 class="proyecto_titulo">Charlas y formación en IA</h3>
+                        <p class="proyecto_detalle">
+                            Talleres de inteligencia artificial y automatización para equipos
+                            corporativos: BANISI, Banco de Guayaquil, Casa de Valores Futuro y Junta
+                            de Beneficencia de Guayaquil, entre otras organizaciones.
+                        </p>
+                        <ul class="proyecto_etiquetas">
+                            <li class="etiqueta">Power Automate</li>
+                            <li class="etiqueta">n8n</li>
+                            <li class="etiqueta">Ingeniería de prompts</li>
+                        </ul>
+                        <a class="proyecto_enlace" href="https://www.linkedin.com/feed/update/urn:li:activity:7493861351002632192/" target="_blank" rel="noopener">Ver publicaciones</a>
+                    </div>
+                </article>
+
+
+                <article class="proyecto">
+                    <figure class="proyecto_figura">
+                        <img class="proyecto_imagen" src="img/proyecto-vui.jpg" alt="Portal de la Ventanilla Única de Inversiones del Ecuador">
+                    </figure>
+                    <div class="proyecto_cuerpo">
+                        <h3 class="proyecto_titulo">Ventanilla Única de Inversiones</h3>
+                        <p class="proyecto_detalle">
+                            Plataforma del Estado ecuatoriano que centraliza los trámites de
+                            inversión. Lideré el desarrollo del CMS y definí el modelo de datos de trámites y expedientes sobre microservicios en Node.js.
+                        </p>
+                        <ul class="proyecto_etiquetas">
+                            <li class="etiqueta">Node.js</li>
+                            <li class="etiqueta">Angular</li>
+                            <li class="etiqueta">PostgreSQL</li>
+                            <li class="etiqueta">MongoDB</li>
+                        </ul>
+                        <a class="proyecto_enlace" href="https://vui.gob.ec" target="_blank" rel="noopener">Visitar vui.gob.ec</a>
+                    </div>
+                </article>
+
+                <article class="proyecto">
+                    <figure class="proyecto_figura">
+                        <img class="proyecto_imagen" src="img/proyecto-murano.jpg" alt="Módulo del sistema ERP Murano 3.0">
+                    </figure>
+                    <div class="proyecto_cuerpo">
+                        <h3 class="proyecto_titulo">ERP Murano 3.0</h3>
+                        <p class="proyecto_detalle">
+                            Modernización del ERP hacia una arquitectura de microservicios. Integré
+                            caché distribuida, indexación de grandes volúmenes de registros y
+                            métricas operativas para el equipo de soporte.
+                        </p>
+                        <ul class="proyecto_etiquetas">
+                            <li class="etiqueta">Microservicios</li>
+                            <li class="etiqueta">Elasticsearch</li>
+                            <li class="etiqueta">Redis</li>
+                            <li class="etiqueta">Kibana</li>
+                        </ul>
+                        <!-- Reemplaza el # si existe una ficha pública del producto -->
+                        <a class="proyecto_enlace" href="#proyectos">Proyecto interno</a>
+                    </div>
+                </article>
+
+
+            </div>
+
         </section>
 
         <!-- CONTACTO: formulario visual con nombre, correo, mensaje y botón -->
         <section id="contacto" class="seccion">
-            <!-- Formulario de contacto -->
+
+            <h2 class="seccion_titulo">Contacto</h2>
+            <p class="seccion_bajada">
+                Escríbeme si quieres conversar sobre un proyecto de datos, IA o automatización.
+            </p>
+
+            <div class="contacto">
+
+                <form class="formulario" action="#" method="post">
+
+                    <div class="campo">
+                        <label class="campo_etiqueta" for="nombre">Nombre</label>
+                        <input class="campo_control" type="text" id="nombre" name="nombre" placeholder="Tu nombre completo">
+                    </div>
+
+                    <div class="campo">
+                        <label class="campo_etiqueta" for="correo">Correo electrónico</label>
+                        <input class="campo_control" type="email" id="correo" name="correo" placeholder="nombre@empresa.com">
+                    </div>
+
+                    <div class="campo">
+                        <label class="campo_etiqueta" for="mensaje">Mensaje</label>
+                        <textarea class="campo_control campo_control--area" id="mensaje" name="mensaje" rows="5" placeholder="Cuéntame en qué estás trabajando"></textarea>
+                    </div>
+
+                    <button class="boton" type="submit">Enviar mensaje</button>
+
+                </form>
+
+                <aside class="contacto_red">
+                    <h3 class="ficha_titulo">También en LinkedIn</h3>
+                    <p class="contacto_nota">
+                        Ahí publico con frecuencia sobre inteligencia artificial aplicada,
+                        automatización y las herramientas que uso en cada proyecto.
+                    </p>
+                    <a class="contacto_enlace" href="https://www.linkedin.com/in/johannabarragan/" target="_blank" rel="noopener">
+                        <svg class="icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <rect class="icono_base" x="1.5" y="1.5" width="21" height="21" rx="4"/>
+                            <rect class="icono_tono" x="5" y="9.5" width="3.2" height="9"/>
+                            <circle class="icono_tono" cx="6.6" cy="6.3" r="1.9"/>
+                            <path class="icono_tono" d="M10.6 9.5 h3.1 v1.3 a3.4 3.4 0 0 1 5.8 2.4 V18.5 h-3.2 v-4.7 a1.5 1.5 0 0 0 -3 0 V18.5 h-2.7 Z"/>
+                        </svg>
+                        <span>linkedin.com/in/johannabarragan</span>
+                    </a>
+                </aside>
+
+            </div>
+
         </section>
 
     </main>
 
     <!-- PIE DE PÁGINA: nombre, año y enlace a GitHub -->
     <footer class="pie">
-        <!-- Pie de página -->
+        <div class="pie_contenedor">
+            <p class="pie_nombre">Johanna Barragán Arteaga</p>
+            <p class="pie_anio">2026</p>
+            <a class="pie_enlace" href="https://github.com/jbarragan1981" target="_blank" rel="noopener">github.com/jbarragan1981</a>
+        </div>
     </footer>
 
 </body>
