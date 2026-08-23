@@ -480,6 +480,13 @@ ul {
     transition: border-color var(--transicion), color var(--transicion);
 }
 
+.proyecto_nota {
+    margin-top: auto;
+    font-size: 0.95rem;
+    font-style: italic;
+    color: var(--color-texto-suave);
+}
+
 .proyecto_enlace:hover {
     border-bottom-color: var(--color-primario);
     text-decoration: none;
@@ -674,5 +681,44 @@ ul {
     .pie_contenedor {
         flex-direction: column;
         justify-content: center;
+    }
+}
+
+/* --------------------------------------------
+   14. DETALLES FINALES
+   -------------------------------------------- */
+
+/* Contorno visible al navegar con el teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--color-primario-claro);
+    outline-offset: 2px;
+}
+
+/* Color de la selección de texto */
+::selection {
+    background-color: var(--color-primario-claro);
+    color: var(--color-superficie);
+}
+
+/* Respeta la preferencia del sistema de reducir animaciones */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        transition: none;
+    }
+
+    .proyecto:hover,
+    .habilidad:hover {
+        transform: none;
+    }
+
+    .proyecto:hover .proyecto_imagen {
+        transform: none;
     }
 }
