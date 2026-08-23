@@ -85,7 +85,7 @@
         <section id="inicio" class="seccion inicio">
 
             <div class="inicio_texto">
-                <p class="inicio_antetitulo">Johanna Barragán Arteaga</p>
+                <p class="inicio_antetitulo">PORTAFOLIO</p>
                 <h1 class="inicio_titulo">Arquitecturas de datos e IA en producción</h1>
                 <p class="inicio_descripcion">
                     Consultora tecnológica con más de 20 años de experiencia en transformación
@@ -380,8 +380,7 @@
                             <li class="etiqueta">Redis</li>
                             <li class="etiqueta">Kibana</li>
                         </ul>
-                        <!-- Reemplaza el # si existe una ficha pública del producto -->
-                        <a class="proyecto_enlace" href="#proyectos">Proyecto interno</a>
+                        <p class="proyecto_nota">Proyecto interno, sin sitio público</p>
                     </div>
                 </article>
 
@@ -400,21 +399,21 @@
 
             <div class="contacto">
 
-                <form class="formulario" action="#" method="post">
+                <form class="formulario" action="mailto:jbarragan@viamatica.com?subject=Contacto%20desde%20el%20portafolio" method="post" enctype="text/plain">
 
                     <div class="campo">
                         <label class="campo_etiqueta" for="nombre">Nombre</label>
-                        <input class="campo_control" type="text" id="nombre" name="nombre" placeholder="Tu nombre completo">
+                        <input class="campo_control" type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
                     </div>
 
                     <div class="campo">
                         <label class="campo_etiqueta" for="correo">Correo electrónico</label>
-                        <input class="campo_control" type="email" id="correo" name="correo" placeholder="nombre@empresa.com">
+                        <input class="campo_control" type="email" id="correo" name="correo" placeholder="nombre@empresa.com" required>
                     </div>
 
                     <div class="campo">
                         <label class="campo_etiqueta" for="mensaje">Mensaje</label>
-                        <textarea class="campo_control campo_control--area" id="mensaje" name="mensaje" rows="5" placeholder="Cuéntame en qué estás trabajando"></textarea>
+                        <textarea class="campo_control campo_control--area" id="mensaje" name="mensaje" rows="5" placeholder="Cuéntame en qué estás trabajando" required></textarea>
                     </div>
 
                     <button class="boton" type="submit">Enviar mensaje</button>
