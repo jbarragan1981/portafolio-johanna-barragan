@@ -38,6 +38,25 @@
     --transicion: 0.25s ease;
 }
 
+/* Tema oscuro: se redefinen únicamente las variables de color.
+   El resto de la hoja no cambia, porque todos los estilos las usan.
+   Nota: --color-primario-oscuro se emplea en títulos, así que en este
+   tema toma un azul claro para mantener el contraste sobre el fondo. */
+[data-tema="oscuro"] {
+    --color-primario: #71B7FB;
+    --color-primario-oscuro: #A8D0F7;
+    --color-primario-claro: #378FE9;
+    --color-fondo: #16191D;
+    --color-superficie: #1F252B;
+    --color-texto: #E8EAED;
+    --color-texto-suave: #A3AFB9;
+    --color-borde: #363E47;
+    --sombra: 0 1px 3px rgba(0, 0, 0, 0.5);
+
+    /* Ajusta los controles nativos del navegador */
+    color-scheme: dark;
+}
+
 /* --------------------------------------------
    2. REINICIO Y ESTILOS BASE
    -------------------------------------------- */
@@ -719,6 +738,132 @@ textarea:focus-visible {
     }
 
     .proyecto:hover .proyecto_imagen {
+        transform: none;
+    }
+}
+
+/* --------------------------------------------
+   15. BOTÓN DE CAMBIO DE TEMA
+   -------------------------------------------- */
+.boton-tema {
+    display: flex;
+    align-items: center;
+    gap: var(--espacio-xs);
+    padding: 0.5rem 0.85rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 2rem;
+    background-color: transparent;
+    color: var(--color-primario-oscuro);
+    font-family: var(--fuente-base);
+    font-size: var(--tamano-pequeno);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color var(--transicion), border-color var(--transicion), color var(--transicion);
+}
+
+.boton-tema:hover {
+    background-color: var(--color-fondo);
+    border-color: var(--color-primario-claro);
+    color: var(--color-primario);
+}
+
+.boton-tema .icono {
+    width: 18px;
+    height: 18px;
+}
+
+/* Solo se muestra el icono que corresponde al tema activo */
+.boton-tema_sol {
+    display: none;
+}
+
+[data-tema="oscuro"] .boton-tema_luna {
+    display: none;
+}
+
+[data-tema="oscuro"] .boton-tema_sol {
+    display: block;
+}
+
+/* --------------------------------------------
+   16. BOTÓN VOLVER ARRIBA
+   -------------------------------------------- */
+.boton-arriba {
+    position: fixed;
+    right: var(--espacio-sm);
+    bottom: var(--espacio-sm);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--color-primario);
+    color: var(--color-superficie);
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0, 65, 130, 0.3);
+
+    /* Oculto mientras la página está arriba */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity var(--transicion), visibility var(--transicion), transform var(--transicion), background-color var(--transicion);
+}
+
+.boton-arriba--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.boton-arriba:hover {
+    background-color: var(--color-primario-oscuro);
+}
+
+.boton-arriba .icono {
+    width: 22px;
+    height: 22px;
+}
+
+/* La flecha necesita más grosor que los iconos de habilidades */
+.boton-arriba .icono_linea {
+    stroke-width: 2.4;
+    stroke-linejoin: round;
+}
+
+/* --------------------------------------------
+   17. AJUSTES PROPIOS DEL TEMA OSCURO
+   -------------------------------------------- */
+
+/* Transición suave al alternar entre temas */
+body {
+    transition: background-color var(--transicion), color var(--transicion);
+}
+
+/* El pie usa el azul oscuro de marca. En tema oscuro ese color pasa a ser
+   claro, así que se sustituye por la superficie para no invertir la franja. */
+[data-tema="oscuro"] .pie {
+    background-color: var(--color-superficie);
+    color: var(--color-texto);
+    border-top: 1px solid var(--color-borde);
+}
+
+[data-tema="oscuro"] .pie_enlace {
+    color: var(--color-primario);
+}
+
+[data-tema="oscuro"] .pie_enlace:hover {
+    color: var(--color-primario);
+}
+
+[data-tema="oscuro"] .boton-arriba {
+    color: var(--color-fondo);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .boton-arriba {
         transform: none;
     }
 }
