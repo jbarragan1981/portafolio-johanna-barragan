@@ -16,6 +16,12 @@ const DESPLAZAMIENTO_MINIMO = 400;
 /* Clave con la que se guardan los proyectos marcados */
 const CLAVE_FAVORITOS = "portafolio-favoritos";
 
+/* Dirección a la que se envía el formulario de contacto */
+const CORREO_CONTACTO = "jbarragan@viamatica.com";
+
+/* Patrón mínimo de un correo: algo, arroba, dominio y extensión */
+const PATRON_CORREO = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
 /* Respeta la preferencia del sistema de reducir animaciones */
 const prefiereMenosMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -212,16 +218,163 @@ function activarBotonesFavoritos() {
 }
 
 /* --------------------------------------------
-   6. EVENTOS
+   6. VALIDACIÓN DEL FORMULARIO
+   -------------------------------------------- */
+
+/**
+ * Muestra un mensaje de error bajo un campo y lo marca en rojo.
+ * @param {HTMLElement} campo
+ * @param {HTMLElement} contenedorError
+ * @param {string} texto
+ */
+function mostrarError(campo, contenedorError, texto) {
+    campo.classList.add("campo_control--invalido");
+    campo.setAttribute("aria-invalid", "true");
+    contenedorError.textContent = texto;
+    contenedorError.classList.add("campo_error--visible");
+}
+
+/**
+ * Quita el error de un campo.
+ * @param {HTMLElement} campo
+ * @param {HTMLElement} contenedorError
+ */
+function limpiarError(campo, contenedorError) {
+    campo.classList.remove("campo_control--invalido");
+    campo.removeAttribute("aria-invalid");
+    contenedorError.textContent = "";
+    contenedorError.classList.remove("campo_error--visible");
+}
+
+/**
+ * Escribe el mensaje general que aparece bajo el botón de enviar.
+ * @param {string} texto
+ * @param {string} tipo - "exito" o "error"
+ */
+function mostrarMensajeGeneral(texto, tipo) {
+    const mensaje = document.getElementById("mensajeFormulario");
+
+    mensaje.textContent = texto;
+    mensaje.classList.add("formulario_mensaje--visible");
+
+    if (tipo === "exito") {
+        mensaje.classList.add("formulario_mensaje--exito");
+        mensaje.classList.remove("formulario_mensaje--error");
+    } else {
+        mensaje.classList.add("formulario_mensaje--error");
+        mensaje.classList.remove("formulario_mensaje--exito");
+    }
+}
+
+/**
+ * Revisa los tres campos y devuelve si el formulario puede enviarse.
+ * @returns {boolean}
+ */
+function validarFormulario() {
+    const nombre = document.getElementById("nombre");
+    const correo = document.getElementById("correo");
+    const mensaje = document.getElementById("mensaje");
+
+    const errorNombre = document.getElementById("errorNombre");
+    const errorCorreo = document.getElementById("errorCorreo");
+    const errorMensaje = document.getElementById("errorMensaje");
+
+    let esValido = true;
+
+    limpiarError(nombre, errorNombre);
+    limpiarError(correo, errorCorreo);
+    limpiarError(mensaje, errorMensaje);
+
+    if (nombre.value.trim() === "") {
+        mostrarError(nombre, errorNombre, "Escribe tu nombre.");
+        esValido = false;
+    }
+
+    if (correo.value.trim() === "") {
+        mostrarError(correo, errorCorreo, "Escribe tu correo electrónico.");
+        esValido = false;
+    } else if (!PATRON_CORREO.test(correo.value.trim())) {
+        mostrarError(correo, errorCorreo, "Revisa el formato del correo, por ejemplo nombre@empresa.com");
+        esValido = false;
+    }
+
+    if (mensaje.value.trim() === "") {
+        mostrarError(mensaje, errorMensaje, "Cuéntame en qué puedo ayudarte.");
+        esValido = false;
+    }
+
+    return esValido;
+}
+
+/**
+ * Arma el enlace de correo con los datos escritos y abre el gestor
+ * de correo del visitante.
+ */
+function abrirCorreo() {
+    const nombre = document.getElementById("nombre").value.trim();
+    const correo = document.getElementById("correo").value.trim();
+    const mensaje = document.getElementById("mensaje").value.trim();
+
+    const asunto = encodeURIComponent("Contacto desde el portafolio");
+    const cuerpo = encodeURIComponent(
+        "Nombre: " + nombre + "\n" +
+        "Correo: " + correo + "\n\n" +
+        mensaje
+    );
+
+    window.location.href = "mailto:" + CORREO_CONTACTO + "?subject=" + asunto + "&body=" + cuerpo;
+}
+
+/**
+ * Se ejecuta al enviar el formulario.
+ * @param {Event} evento
+ */
+function enviarFormulario(evento) {
+    evento.preventDefault();
+
+    if (validarFormulario()) {
+        mostrarMensajeGeneral("Listo. Se abrirá tu gestor de correo con el mensaje escrito.", "exito");
+        abrirCorreo();
+    } else {
+        mostrarMensajeGeneral("Revisa los campos marcados antes de enviar.", "error");
+    }
+}
+
+/**
+ * Borra la marca de error de un campo en cuanto el visitante lo corrige.
+ */
+function activarLimpiezaDeErrores() {
+    const campos = [
+        { campo: "nombre", error: "errorNombre" },
+        { campo: "correo", error: "errorCorreo" },
+        { campo: "mensaje", error: "errorMensaje" }
+    ];
+
+    campos.forEach(function (par) {
+        const campo = document.getElementById(par.campo);
+        const contenedorError = document.getElementById(par.error);
+
+        campo.addEventListener("input", function () {
+            if (campo.value.trim() !== "") {
+                limpiarError(campo, contenedorError);
+            }
+        });
+    });
+}
+
+/* --------------------------------------------
+   7. EVENTOS
    -------------------------------------------- */
 
 document.getElementById("botonTema").addEventListener("click", alternarTema);
 document.getElementById("botonArriba").addEventListener("click", subirAlInicio);
+document.getElementById("formularioContacto").addEventListener("submit", enviarFormulario);
 window.addEventListener("scroll", actualizarBotonArriba);
 activarBotonesFavoritos();
+activarLimpiezaDeErrores();
 
 /* --------------------------------------------
-   7. ARRANQUE
+   8. ARRANQUE
    -------------------------------------------- */
 
 mostrarAnioActual();

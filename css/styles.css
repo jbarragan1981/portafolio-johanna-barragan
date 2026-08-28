@@ -17,6 +17,8 @@
     --color-texto: #1D2226;
     --color-texto-suave: #5E6B74;
     --color-borde: #D9D9D9;
+    --color-error: #B42318;
+    --color-exito: #0A7C42;
 
     /* Tipografía */
     --fuente-base: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
@@ -51,6 +53,8 @@
     --color-texto: #E8EAED;
     --color-texto-suave: #A3AFB9;
     --color-borde: #363E47;
+    --color-error: #F97066;
+    --color-exito: #5CD68E;
     --sombra: 0 1px 3px rgba(0, 0, 0, 0.5);
 
     /* Ajusta los controles nativos del navegador */
@@ -939,4 +943,54 @@ body {
     .proyecto_favorito:hover {
         transform: none;
     }
+}
+
+/* --------------------------------------------
+   19. VALIDACIÓN DEL FORMULARIO
+   -------------------------------------------- */
+
+/* Los mensajes de error solo ocupan espacio cuando tienen texto */
+.campo_error {
+    display: none;
+    margin-top: 0.35rem;
+    font-size: var(--tamano-pequeno);
+    color: var(--color-error);
+}
+
+.campo_error--visible {
+    display: block;
+}
+
+.campo_control--invalido {
+    border-color: var(--color-error);
+}
+
+.campo_control--invalido:hover,
+.campo_control--invalido:focus {
+    border-color: var(--color-error);
+}
+
+/* Mensaje general bajo el botón de enviar */
+.formulario_mensaje {
+    display: none;
+    margin-top: var(--espacio-sm);
+    padding: 0.7rem 1rem;
+    border-left: 4px solid var(--color-borde);
+    border-radius: var(--radio);
+    background-color: var(--color-fondo);
+    font-size: var(--tamano-pequeno);
+}
+
+.formulario_mensaje--visible {
+    display: block;
+}
+
+.formulario_mensaje--error {
+    border-left-color: var(--color-error);
+    color: var(--color-error);
+}
+
+.formulario_mensaje--exito {
+    border-left-color: var(--color-exito);
+    color: var(--color-exito);
 }
