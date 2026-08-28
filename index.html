@@ -454,6 +454,12 @@
                         <p class="campo_error" id="errorMensaje"></p>
                     </div>
 
+                    <!-- Campo trampa: queda oculto y solo lo llenan los robots de spam -->
+                    <div class="campo_trampa" aria-hidden="true">
+                        <label for="sitioWeb">Sitio web</label>
+                        <input type="text" id="sitioWeb" name="sitioWeb" tabindex="-1" autocomplete="off">
+                    </div>
+
                     <button class="boton" type="submit">Enviar mensaje</button>
 
                     <p class="formulario_mensaje" id="mensajeFormulario" role="status"></p>

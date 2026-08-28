@@ -16,8 +16,9 @@ const DESPLAZAMIENTO_MINIMO = 400;
 /* Clave con la que se guardan los proyectos marcados */
 const CLAVE_FAVORITOS = "portafolio-favoritos";
 
-/* Dirección a la que se envía el formulario de contacto */
-const CORREO_CONTACTO = "jbarragan@viamatica.com";
+/* Webhook de n8n que recibe el formulario y envía el correo.
+   Es la URL de producción: el flujo debe estar activo en n8n. */
+const ENDPOINT_FORMULARIO = "https://jbarragan149.app.n8n.cloud/webhook/portafolio-contacto";
 
 /* Patrón mínimo de un correo: algo, arroba, dominio y extensión */
 const PATRON_CORREO = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -307,22 +308,59 @@ function validarFormulario() {
 }
 
 /**
- * Arma el enlace de correo con los datos escritos y abre el gestor
- * de correo del visitante.
+ * Bloquea o libera el botón mientras el mensaje viaja.
+ * @param {boolean} enviando
  */
-function abrirCorreo() {
-    const nombre = document.getElementById("nombre").value.trim();
-    const correo = document.getElementById("correo").value.trim();
-    const mensaje = document.getElementById("mensaje").value.trim();
+function marcarEnvioEnCurso(enviando) {
+    const boton = document.querySelector("#formularioContacto .boton");
 
-    const asunto = encodeURIComponent("Contacto desde el portafolio");
-    const cuerpo = encodeURIComponent(
-        "Nombre: " + nombre + "\n" +
-        "Correo: " + correo + "\n\n" +
-        mensaje
-    );
+    boton.disabled = enviando;
+    boton.textContent = enviando ? "Enviando..." : "Enviar mensaje";
+}
 
-    window.location.href = "mailto:" + CORREO_CONTACTO + "?subject=" + asunto + "&body=" + cuerpo;
+/**
+ * Envía el formulario al servicio de correo sin recargar la página.
+ */
+function enviarCorreo() {
+    const formulario = document.getElementById("formularioContacto");
+
+    const datos = {
+        nombre: document.getElementById("nombre").value.trim(),
+        correo: document.getElementById("correo").value.trim(),
+        mensaje: document.getElementById("mensaje").value.trim(),
+        sitioWeb: document.getElementById("sitioWeb").value.trim(),
+        origen: window.location.href
+    };
+
+    marcarEnvioEnCurso(true);
+    mostrarMensajeGeneral("Enviando tu mensaje...", "exito");
+
+    /* Se envía como texto plano a propósito: evita la petición previa
+       de tipo OPTIONS que el navegador hace con application/json.
+       En n8n el contenido llega igual y se interpreta como JSON. */
+    fetch(ENDPOINT_FORMULARIO, {
+        method: "POST",
+        headers: {
+            "Content-Type": "text/plain;charset=UTF-8"
+        },
+        body: JSON.stringify(datos)
+    })
+        .then(function (respuesta) {
+            if (!respuesta.ok) {
+                throw new Error("El servicio respondió con error");
+            }
+            return respuesta.text();
+        })
+        .then(function () {
+            mostrarMensajeGeneral("Mensaje enviado. Te responderé al correo que dejaste.", "exito");
+            formulario.reset();
+        })
+        .catch(function () {
+            mostrarMensajeGeneral("No se pudo enviar el mensaje. Inténtalo en unos minutos o escríbeme por LinkedIn.", "error");
+        })
+        .finally(function () {
+            marcarEnvioEnCurso(false);
+        });
 }
 
 /**
@@ -333,8 +371,7 @@ function enviarFormulario(evento) {
     evento.preventDefault();
 
     if (validarFormulario()) {
-        mostrarMensajeGeneral("Listo. Se abrirá tu gestor de correo con el mensaje escrito.", "exito");
-        abrirCorreo();
+        enviarCorreo();
     } else {
         mostrarMensajeGeneral("Revisa los campos marcados antes de enviar.", "error");
     }
