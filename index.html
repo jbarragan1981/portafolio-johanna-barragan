@@ -306,7 +306,7 @@
             <h2 class="seccion_titulo">Proyectos</h2>
             <p class="seccion_bajada">
                 Una selección de trabajos de consultoría, desarrollo y formación de los últimos años.
-                Marca con` la estrella los que quieras conservar: el navegador los recuerda.
+                Marca con la estrella los que quieras conservar: el navegador los recuerda.
             </p>
 
             <p class="favoritos_resumen" id="favoritosResumen"></p>
@@ -434,24 +434,29 @@
 
             <div class="contacto">
 
-                <form class="formulario" action="mailto:jbarragan@viamatica.com?subject=Contacto%20desde%20el%20portafolio" method="post" enctype="text/plain">
+                <form class="formulario" id="formularioContacto" novalidate>
 
                     <div class="campo">
                         <label class="campo_etiqueta" for="nombre">Nombre</label>
                         <input class="campo_control" type="text" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+                        <p class="campo_error" id="errorNombre"></p>
                     </div>
 
                     <div class="campo">
                         <label class="campo_etiqueta" for="correo">Correo electrónico</label>
                         <input class="campo_control" type="email" id="correo" name="correo" placeholder="nombre@empresa.com" required>
+                        <p class="campo_error" id="errorCorreo"></p>
                     </div>
 
                     <div class="campo">
                         <label class="campo_etiqueta" for="mensaje">Mensaje</label>
                         <textarea class="campo_control campo_control--area" id="mensaje" name="mensaje" rows="5" placeholder="Cuéntame en qué estás trabajando" required></textarea>
+                        <p class="campo_error" id="errorMensaje"></p>
                     </div>
 
                     <button class="boton" type="submit">Enviar mensaje</button>
+
+                    <p class="formulario_mensaje" id="mensajeFormulario" role="status"></p>
 
                 </form>
 
