@@ -994,3 +994,23 @@ body {
     border-left-color: var(--color-exito);
     color: var(--color-exito);
 }
+
+/* Botón bloqueado mientras el mensaje se está enviando */
+.boton:disabled {
+    opacity: 0.65;
+    cursor: progress;
+}
+
+.boton:disabled:hover {
+    background-color: var(--color-primario);
+}
+
+/* Campo trampa contra spam: invisible y fuera del recorrido con Tab */
+.campo_trampa {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
